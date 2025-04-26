@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý thuê phòng trọ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Quản lý thuê phòng trọ</h1>
+
+  <!-- Search Bar and Buttons -->
+  <div id="search-container">
+    <input type="text" id="searchInput" placeholder="Tìm kiếm theo mã, tên, hoặc SĐT">
+    <button onclick="searchData()">Tìm kiếm</button>
+    <button onclick="showCreateForm()">Tạo mới</button>
+    <button onclick="confirmDelete()">Xóa</button>
+  </div>
+
+  <!-- Data Table -->
+  <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
+        <th>Mã phòng</th>
+        <th>Tên người thuê</th>
+        <th>SĐT</th>
+        <th>Ngày bắt đầu</th>
+        <th>Thanh toán</th>
+        <th>Ghi chú</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <!-- Create Form Modal -->
+  <div id="createForm" class="modal hidden">
+    <form id="newForm" onsubmit="submitForm(event)">
+      <h3>Tạo mới người thuê</h3>
+      <label for="tenant_name">Tên người thuê:</label>
+      <input name="tenant_name" required>
+
+      <label for="phone_number">Số điện thoại:</label>
+      <input name="phone_number" required>
+
+      <label for="start_date">Ngày bắt đầu:</label>
+      <input type="date" name="start_date" required>
+
+      <label for="payment_type">Hình thức thanh toán:</label>
+      <select name="payment_type" required>
+        <option value="1">Theo tháng</option>
+        <option value="2">Theo quý</option>
+        <option value="3">Theo năm</option>
+      </select>
+
+      <label for="note">Ghi chú:</label>
+      <textarea name="note" rows="3"></textarea>
+
+      <div style="text-align: right;">
+        <button type="submit">Tạo mới</button>
+        <button type="button" onclick="closeForm()">Hủy</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Popup Delete Confirmation -->
+  <div id="popup" class="modal hidden">
+    <p id="popupText">Bạn có chắc chắn muốn xóa?</p>
+    <div style="text-align: right;">
+      <button onclick="deleteSelected()">Có</button>
+      <button onclick="closePopup()">Không</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
